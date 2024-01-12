@@ -10,11 +10,6 @@ int main() {
 
     char *input = malloc(BUFFER_SIZE * sizeof(char));
 
-    if (input == NULL) {
-        perror("Error allocating memory for input");
-        exit(EXIT_FAILURE);
-    }
-
     printf("Enter input: ");
 
     int ch;
