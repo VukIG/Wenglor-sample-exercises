@@ -65,3 +65,7 @@ U fajlovima treba ispisati sortirane podatke o takmičarima: Ime Prezime Godiste
 - Klonirajte repozitorijum: `git clone https://github.com/tvoje-ime/Wenglor-sample-exercises.git`
 - Kompajlirajte program: `gcc -o zadatak1 zadatak1.c funkcije.c` i `gcc -o zadatak2 zadatak2.c funkcije.c`
 - Pokrenite program: `./zadatak1` i `./zadatak2`
+
+## Linkovi:
+  - https://www.wenglor.com/en/
+  - https://www.youtube.com/@wenglorsensoric 

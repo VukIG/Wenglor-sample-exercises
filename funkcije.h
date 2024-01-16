@@ -6,6 +6,10 @@
 #include <math.h>
 
 float calculateResult(float *numbers, int count, char operation);
-void convertToInteger(char *line);
+char* convertToInteger(char *line);
+void printResultToFile(float result);
+float aritmethic(int *numbers, int count, char operation);
+float geometric(int *numbers, int count, char operation);
+float harmonic(int *numbers, int count, char operation);
 
 #endif

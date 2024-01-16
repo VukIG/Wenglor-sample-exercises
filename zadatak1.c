@@ -2,49 +2,73 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include "funkcije.h"
+#include <string.h>
 
 int main() {
-    int BUFFER_SIZE = 64;
+
+    int BUFFER_SIZE = 2;
     int count = 0;
     float *numbers = NULL;
-
-    char *input = malloc(BUFFER_SIZE * sizeof(char));
-
-    printf("Enter input: ");
+    char method[11];
+    printf("Unos: ");
 
     int ch;
+    float result;
     int index = 0;
     char avgType;
-    do {
+    int len = 0;
+    char* input=(char*)malloc(sizeof(char));
+    int a[len];
+    while(1) {
         ch = getchar();
-        if (index == BUFFER_SIZE - 1) {
-            BUFFER_SIZE += 1;
-            input = realloc(input, BUFFER_SIZE * sizeof(char));
-
-            if (input == NULL) {
-                perror("Error reallocating memory for input");
-                exit(EXIT_FAILURE);
-            }
+        if (len == 0 && !isdigit(ch))
+        {
+            printf("Neophodan je unos celobrojnog niza");
+            break;
         }
-
-        input[index++] = ch;
-
-    } while (ch != 'a' && ch != 'g' && ch != 'h');
-    
-    avgType = input[index-1];
-    input[index-1] = '\0';
-
-    if (isdigit(input[0])) {
-        // If the input is a number, convert it to integers
-        convertToInteger(input);
-    } else if (isalpha(input[0])) {
-        // If the input is a character, perform an operation
-        float result = calculateResult(numbers, count, avgType);
-        printf("Result: %f\n", result);
-    } else {
-        printf("Invalid input\n");
-        exit(EXIT_FAILURE);
+        if (isdigit(ch))
+        {
+            input=(char*)realloc(input,sizeof(char)*(len+1));
+            input[len]=ch;
+            len++;
+        }
+        else if (ch != 'a' || ch != 'g' || ch != 'h')
+        {
+            float result;
+            char t=fgets(method,12,stdin);
+            if (strcmp(method,"ritmeticka"))
+            {
+                input = convertToInteger(input);
+                result = aritmethic(input,len,ch);
+            }
+            else if(strcmp(method,"eometrijska"))
+            {
+                input = convertToInteger(input);                
+                result = geometric(input,len,ch);
+            }
+            else if(strcmp(method,"armonijska"))
+            {
+                input = convertToInteger(input);
+                result = harmonic(input,len,ch);
+            }
+            else if( t == NULL ){
+                result = calculateResult(input,len,ch);
+            }
+            else{
+                printf("Nevazeca metoda");
+                break;
+            };
+        }
+        else{
+            printf("Sta si ti uneo sine moj?!");
+            break;
+        };
+        len++;
     }
+
+    printf("%s","MOMIR19");
+    printResultToFile(result);
+    printf("Rezultat uspesno upisan u Rezultat.txt !");
 
     free(numbers);
     free(input);
