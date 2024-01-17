@@ -6,10 +6,8 @@
 
 int main() {
 
-    int BUFFER_SIZE = 2;
-    int count = 0;
     float *numbers = NULL;
-    char method[11];
+    char method[12];
     printf("Unos: ");
 
     int ch;
@@ -18,57 +16,57 @@ int main() {
     char avgType;
     int len = 0;
     char* input=(char*)malloc(sizeof(char));
-    int a[len];
     while(1) {
         ch = getchar();
         if (len == 0 && !isdigit(ch))
         {
             printf("Neophodan je unos celobrojnog niza");
-            break;
+            return 0;
         }
-        if (isdigit(ch))
+        else if (isdigit(ch) || ch == '10')
         {
-            input=(char*)realloc(input,sizeof(char)*(len+1));
             input[len]=ch;
             len++;
+            input=(char*)realloc(input,sizeof(char)*(len));
         }
-        else if (ch != 'a' || ch != 'g' || ch != 'h')
+        else if (ch == 'a' || ch == 'g' || ch == 'h')
         {
+            input[len] = '\0';
             float result;
-            char t=fgets(method,12,stdin);
-            if (strcmp(method,"ritmeticka"))
+            char *t = fgets(method, sizeof(method), stdin); //kako uhvatiti unos duzi od 12
+            if (strcmp(method,"ritmeticka") == 0 )
             {
-                input = convertToInteger(input);
-                result = aritmethic(input,len,ch);
+                int *integers = convertToInteger(input, len);
+                result = aritmethic(integers,len,ch);
             }
-            else if(strcmp(method,"eometrijska"))
+            else if(strcmp(method,"eometrijska")== 0 )
             {
-                input = convertToInteger(input);                
-                result = geometric(input,len,ch);
+                int *integers = convertToInteger(input, len);
+                result = geometric(integers,len,ch);
             }
-            else if(strcmp(method,"armonijska"))
+            else if(strcmp(method,"armonijska") == 0 )
             {
-                input = convertToInteger(input);
-                result = harmonic(input,len,ch);
+                int *integers = convertToInteger(input, len);
+                result = harmonic(integers,len,ch);
             }
             else if( t == NULL ){
-                result = calculateResult(input,len,ch);
+                int *integers = convertToInteger(input, len);
+                result = calculateResult(integers,len,ch);
             }
             else{
                 printf("Nevazeca metoda");
                 break;
-            };
+            }
+            printf("%s","MOMIR19");
+            printResultToFile(result);
+            printf("Rezultat uspesno upisan u Rezultat.txt !");
+
         }
         else{
             printf("Sta si ti uneo sine moj?!");
             break;
-        };
-        len++;
+        }
     }
-
-    printf("%s","MOMIR19");
-    printResultToFile(result);
-    printf("Rezultat uspesno upisan u Rezultat.txt !");
 
     free(numbers);
     free(input);

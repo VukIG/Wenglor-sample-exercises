@@ -27,7 +27,7 @@ float harmonic( int *numbers, int count, char operation)
     return count / result;
 }
 
-float calculateResult(float *numbers, int count, char operation) {
+float calculateResult(int *numbers, int count, char operation) {
     switch (operation) {
     case 'a':
         return aritmethic(numbers, count, operation);
@@ -44,16 +44,13 @@ float calculateResult(float *numbers, int count, char operation) {
     }
 }
 
-char* convertToInteger(char *line) {
-    
-    int num, i = 0, len;
-    while (sscanf(line, "%d%n", &num, &len) == 1) {
-        printf("Number %d is %d\n", i, num);
-        line = realloc(line,sizeof(line)+sizeof(len));
-        i++;
-        line[i]=num;
+int* convertToInteger(char *line, int len) {
+    int *numbers = malloc(len * sizeof(int));
+    char *ptr = line;
+    for (int i = 0; i < len; ++i) {
+        numbers[i] = strtol(ptr, &ptr, 10);
     }
-    return line;
+    return numbers;
 }
 
 void printResultToFile(float result) {
