@@ -28,7 +28,8 @@ float harmonic( int *numbers, int count, char operation)
     return count / result;
 }
 
-float calculateResult(int *numbers, int count, char operation) {
+float calculateResult(int *numbers, int count, char operation) 
+{
     switch (operation) {
     case 'a':
         return aritmethic(numbers, count, operation);
@@ -45,7 +46,8 @@ float calculateResult(int *numbers, int count, char operation) {
     }
 }
 
-int* convertToInteger(char *line, int *len) {
+int* convertToInteger(char *line, int *len) 
+{
     int *numbers = malloc(sizeof(int) * (*len));
     int numbersSize = 0;
     char *ptr = strtok(line, " ");
@@ -59,7 +61,8 @@ int* convertToInteger(char *line, int *len) {
 }
 
 
-void printResultToFile(float result) {
+void printResultToFile(float result) 
+{
     
     FILE *file = fopen("Rezultat.txt", "w");
     if (file == NULL) {
