@@ -2,12 +2,13 @@
 
 float aritmethic( int *numbers, int count, char operation)
 {
-    float result = 0.0;
-    for (int i = 0; i < count; ++i) {
-        result += numbers[i];
-    }
-    return result /= count;
+   float result = 0.0;
+   for (int i = 0; i < count; ++i) {
+       result += numbers[i];
+   }
+   return result / count;
 }
+
 
 float geometric( int *numbers, int count, char operation)
 {
@@ -44,14 +45,19 @@ float calculateResult(int *numbers, int count, char operation) {
     }
 }
 
-int* convertToInteger(char *line, int len) {
-    int *numbers = malloc(len * sizeof(int));
-    char *ptr = line;
-    for (int i = 0; i < len; ++i) {
-        numbers[i] = strtol(ptr, &ptr, 10);
+int* convertToInteger(char *line, int *len) {
+    int *numbers = malloc(sizeof(int) * (*len));
+    int numbersSize = 0;
+    char *ptr = strtok(line, " ");
+
+    while (ptr != NULL) {
+        numbers[numbersSize++] = atoi(ptr);
+        ptr = strtok(NULL, " ");
     }
-    return numbers;
+    *len = numbersSize;
+   return numbers;
 }
+
 
 void printResultToFile(float result) {
     
