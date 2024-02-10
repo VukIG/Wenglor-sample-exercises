@@ -32,29 +32,32 @@ int main() {
             input[len] = '\0';
             float result;
             char *t = fgets(method, sizeof(method), stdin);
+            printf("%c",*t);
             if (strcmp(method,"ritmeticka"))
             {
                 *arrayLen = len;
                 int *integers = convertToInteger(input, arrayLen);
                 len = *arrayLen; 
-                result = aritmethic(integers,len,ch);
+                result = aritmethic(integers,len);
                 for (int i = 0; i < len; i++) {
                     printf("%d ", integers[i]);
                 }
             }
-            else if(strcmp(method,"eometrijska")== 0 )
+            else if(strcmp(method,"eometrijska"))
             {
+                printf("momir");
                 *arrayLen = len;
                 int *integers = convertToInteger(input, arrayLen);
-                len = *arrayLen; 
-                result = geometric(integers,len,ch);
+                len = *arrayLen;
+                printf("%d",len);
+                result = geometric(integers,len);
             }
-            else if(strcmp(method,"armonijska") == 0 )
+            else if(strcmp(method,"armonijska"))
             {
                 *arrayLen = len;
                 int *integers = convertToInteger(input, arrayLen); 
                 len = *arrayLen; 
-                result = harmonic(integers,len,ch);
+                result = harmonic(integers,len);
             }
             else if( t == NULL ){
                 *arrayLen = len;

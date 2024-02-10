@@ -1,6 +1,6 @@
 #include "funkcije.h"
 
-float aritmethic( int *numbers, int count, char operation)
+float aritmethic( int *numbers, int count)
 {
    float result = 0.0;
    for (int i = 0; i < count; ++i) {
@@ -10,17 +10,19 @@ float aritmethic( int *numbers, int count, char operation)
 }
 
 
-float geometric( int *numbers, int count, char operation)
+float geometric( int *numbers, int count)
 {
-    float result = 1.0;
-    for (int i = 0; i < count; ++i) {
+    int result = 1;
+    for (int i = 0; i < count; i++) {
         result *= numbers[i];
     }
-    return pow(result, 1.0 / count);
+    float tmp = 1.0 / count;
+    return pow( tmp, result ); //sopstvena root funkcija pow zaokruzuje na dve decimale
 }
 
-float harmonic( int *numbers, int count, char operation)
+float harmonic( int *numbers, int count)
 {
+    printf("%d",count);
     float result = 0.0;
     for (int i = 0; i < count; ++i) {
         result += 1.0 / numbers[i];
@@ -30,15 +32,16 @@ float harmonic( int *numbers, int count, char operation)
 
 float calculateResult(int *numbers, int count, char operation) 
 {
+    printf("%c",operation);
     switch (operation) {
     case 'a':
-        return aritmethic(numbers, count, operation);
+        return aritmethic(numbers, count);
         break;
     case 'g':
-        return geometric(numbers, count, operation);
+        return geometric(numbers, count);
         break;
     case 'h':
-        return harmonic(numbers, count, operation);
+        return harmonic(numbers, count);
         break;
     default:
         printf("Invalid operation\n");
@@ -70,6 +73,6 @@ void printResultToFile(float result)
         exit(EXIT_FAILURE);
     }
 
-    fprintf(file, "%f\n", result);
+    fprintf(file, "%.3f\n", result);
     fclose(file);
 }

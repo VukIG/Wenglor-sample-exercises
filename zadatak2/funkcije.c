@@ -1,22 +1,27 @@
 #include "funkcije.h"
 
-void printToFile(student* student) {
-   char filename[40];
-   snprintf(filename, sizeof(filename), "%s_%s.txt", student->Godina, student->Oblast);
+void printToFile(student* student, int studNum) {
+    for (int i = 0; i < studNum; i++)
+    {
+        char filename[40];
+        snprintf(filename, sizeof(filename), "%s_%s.txt", student[i].Godina, student[i].Oblast); //bug sa IIIMATEMATIKA_MATEMATIKA
+        printf("%s",student[i].Godina);
+        FILE *file = fopen(filename, "a");
+        if (file == NULL) {
+            perror("Problem pri otvaranju fajla");
+            exit(EXIT_FAILURE);
+        }   
+        else{
+            fprintf(file,"Ucenik broj %d\n", i-1);//potencijalni bug
+            fprintf(file, "Ime: %s\n ", student[i].Ime);
+            fprintf(file, "Prezime: %s\n ", student[i].Prezime);
+            fprintf(file, "Godiste: %d\n ", student[i].Godiste);
+            fprintf(file, "Srednja: %s\n ", student[i].Srednja_skola);
+            fprintf(file, "Poeni: %.2f\n ", student[i].Broj_poena);
+            fprintf(file,"\n");
+            fclose(file);
 
-   FILE *file = fopen(filename, "w");
-   if (file == NULL) {
-       perror("Problem pri otvaranju fajla");
-       exit(EXIT_FAILURE);
-   }
+        }
+    }
 
-   fprintf(file, "Ime: %s\n", student->Ime);
-   fprintf(file, "Prezime: %s\n", student->Prezime);
-   fprintf(file, "Godiste: %d\n", student->Godiste);
-   fprintf(file, "Srednja skola: %s\n", student->Srednja_skola);
-   fprintf(file, "Godina: %s\n", student->Godina);
-   fprintf(file, "Oblast: %s\n", student->Oblast);
-   fprintf(file, "Broj poena: %d\n", student->Broj_poena);
-
-   fclose(file);
 }
