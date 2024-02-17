@@ -40,7 +40,7 @@ void printToFile(student* student, int studNum) {
         char filename[40];
         if (strcmp(student[i].Godina,"")!=0 || strcmp(student[i].Oblast,"")!=0)
         {
-            snprintf(filename, sizeof(filename), "%s_%s.txt", student[i].Godina, student[i].Oblast); //bug sa IIIMATEMATIKA_MATEMATIKA
+            snprintf(filename, sizeof(filename), "%s_%s.txt", student[i].Oblast, student[i].Godina); //bug sa IIIMATEMATIKA_MATEMATIKA
             printf("%s",student[i].Godina);
             FILE *file = fopen(filename, "a");
             if (file == NULL) {
