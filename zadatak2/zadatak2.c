@@ -4,7 +4,7 @@
 
 int main(int argc, char const *argv[])
 {   
-    int studNum = 1;
+    int studNum = 0;
     char userInput[100];
     student* students = NULL;
     while ( fgets(userInput,sizeof(userInput),stdin))
@@ -54,7 +54,7 @@ int main(int argc, char const *argv[])
                 }
                 else
                 {
-                    printf("Ne vazeca oblast, unesite Biologija, Matematika, Fizika ili Hemija");    
+                    printf("Ne vazeca oblast, unesite Biologija, Matematika, Fizika ili Hemija");                        
                 }            
                 break;
             case 7:
